@@ -18,6 +18,7 @@ const HomeContainer = styled.View`
 
 const WelcomeText = styled.Text`
   font-size: 20px;
+  font-family: Open Sans 
   text-align: center;
   margin: 10px;
 `;
