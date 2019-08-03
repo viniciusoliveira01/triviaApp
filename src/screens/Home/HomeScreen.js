@@ -11,7 +11,7 @@ const HomeScreen = () => {
         </WelcomeText>
         <WelcomeText>Can you score 100%?</WelcomeText>
         <BeginButton>
-          <BeginButtonText> begin</BeginButtonText>
+          <BeginButtonText>begin</BeginButtonText>
         </BeginButton>
       </HomeContainer>
     </WelcomeSafeArea>
