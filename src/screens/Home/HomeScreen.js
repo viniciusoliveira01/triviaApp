@@ -1,9 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
+import { fetchGame } from '../../actions/game-action';
 import colors from '../../config/colors';
 
 const HomeScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+
+  const startGame = () => {
+    dispatch(fetchGame());
+    navigation.navigate('Quiz');
+  };
+
   return (
     <WelcomeSafeArea>
       <HomeContainer>
@@ -12,7 +21,7 @@ const HomeScreen = ({ navigation }) => {
           You will be presented {'\n'}with 10 true or false{'\n'} questions.
         </WelcomeText>
         <WelcomeText>Can you score 100%?</WelcomeText>
-        <BeginButton onPress={() => navigation.navigate('Quiz')}>
+        <BeginButton onPress={startGame}>
           <BeginButtonText>begin</BeginButtonText>
         </BeginButton>
       </HomeContainer>
@@ -29,6 +38,7 @@ const HomeContainer = styled.View`
   flex: 1;
   justify-content: space-between;
   align-items: center;
+  padding: 30px 0;
 `;
 
 const WelcomeTitle = styled.Text`
@@ -57,8 +67,9 @@ const BeginButton = styled.TouchableOpacity`
 
 const BeginButtonText = styled.Text`
   color: ${colors.white}
-  font-size: 18px;
-  font-family: Open Sans 
+  font-size: 20px;
+  font-family: Open Sans;
+  font-weight: 500;
   text-align: center;
   text-transform: uppercase;
 `;

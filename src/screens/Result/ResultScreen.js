@@ -52,6 +52,7 @@ const QuizContainer = styled.View`
   flex: 1;
   justify-content: space-around;
   align-items: center;
+  padding: 30px 0;
 `;
 
 const QuizScoreTitle = styled.Text`
