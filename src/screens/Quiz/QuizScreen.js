@@ -1,10 +1,29 @@
 import React from 'react';
+import { ActivityIndicator } from 'react-native';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import colors from '../../config/colors';
 
-const QuizScreen = () => {
+const QuizScreen = ({ navigation }) => {
+  const questions = useSelector(state => state.gameReducer.game);
+  const isGameLoading = useSelector(state => state.gameReducer.isGameLoading);
+
+  const onAnswerQuestion = () => {
+    navigation.navigate('Result');
+  };
+
+  if (isGameLoading) {
+    return (
+      <ActivityIndicator
+        size="large"
+        color={colors.lightNavy}
+        style={{ flex: 1, alignSelf: 'center' }}
+      />
+    );
+  }
+
   return (
     <QuizSafeArea>
       <CategoryTitle>Entertainment: Video Games</CategoryTitle>
@@ -16,10 +35,10 @@ const QuizScreen = () => {
         <QuestionText>1 of 10</QuestionText>
 
         <AnswerButtonContainer>
-          <AnswerButton trueButton>
+          <AnswerButton trueButton onPress={onAnswerQuestion}>
             <Icon name="check" size={28} style={{ color: colors.white }} />
           </AnswerButton>
-          <AnswerButton>
+          <AnswerButton onPress={onAnswerQuestion}>
             <Icon name="close" size={28} style={{ color: colors.white }} />
           </AnswerButton>
         </AnswerButtonContainer>
