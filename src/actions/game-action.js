@@ -13,7 +13,7 @@ export function fetchGame() {
         'Content-Type': 'application/json'
       })
       .then(res => {
-        const game = res.data;
+        const game = res.data.results;
 
         dispatch({
           type: FETCH_GAME_SUCCESS,
