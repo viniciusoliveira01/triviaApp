@@ -1,6 +1,8 @@
+import React from 'react';
 import { AppRegistry } from 'react-native';
-
-import HomeScreen from './src/screens/Home/HomeScreen';
 import { name as appName } from './app.json';
+import Routes from './src/config/Routes';
 
-AppRegistry.registerComponent(appName, () => HomeScreen);
+const navigator = () => <Routes />;
+
+AppRegistry.registerComponent(appName, () => navigator);

@@ -1,20 +1,42 @@
 import React from 'react';
+import { View } from 'react-native';
 import styled from 'styled-components';
+import ProgressBarAnimated from 'react-native-progress-bar-animated';
 
+import colors from '../../config/colors';
 import AnswerResult from '../../components/AnswerResult';
 
-const ResultScreen = () => {
+const ResultScreen = ({ navigation }) => {
+  const progressPercent = (2 / 10) * 100;
+  const isProgressCompleted = progressPercent === 100 ? colors.darkGreen : colors.lightNavy;
   return (
     <QuizSafeArea>
       <QuizContainer>
-        <CategoryTitle>YOU SCORED{'\n'}1/10</CategoryTitle>
+        <View>
+          <QuizScoreTitle>YOU SCORED{'\n'}1/10</QuizScoreTitle>
 
-        <QuestionContainer>
+          <ProgressBarAnimated
+            width={300}
+            value={progressPercent}
+            backgroundColor={isProgressCompleted}
+          />
+        </View>
+
+        <QuestionContainer persistentScrollbar>
+          <AnswerResult result resultText="Unterned originally started as a Roblox Game." />
+          <AnswerResult result resultText="Unterned originally started as a Roblox Game." />
+          <AnswerResult result resultText="Unterned originally started as a Roblox Game." />
+          <AnswerResult result resultText="Unterned originally started as a Roblox Game." />
+          <AnswerResult result resultText="Unterned originally started as a Roblox Game." />
+          <AnswerResult result resultText="Unterned originally started as a Roblox Game." />
+          <AnswerResult result resultText="Unterned originally started as a Roblox Game." />
+          <AnswerResult result resultText="Unterned originally started as a Roblox Game." />
+          <AnswerResult result resultText="Unterned originally started as a Roblox Game." />
           <AnswerResult result resultText="Unterned originally started as a Roblox Game." />
         </QuestionContainer>
 
-        <BeginButton>
-          <BeginButtonText>Play again</BeginButtonText>
+        <BeginButton onPress={() => navigation.navigate('Home')}>
+          <BeginButtonText>play again</BeginButtonText>
         </BeginButton>
       </QuizContainer>
     </QuizSafeArea>
@@ -23,37 +45,38 @@ const ResultScreen = () => {
 
 const QuizSafeArea = styled.SafeAreaView`
   flex: 1;
+  background-color: ${colors.iceWhite};
 `;
 
 const QuizContainer = styled.View`
   flex: 1;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  background-color: #fff;
 `;
 
-const CategoryTitle = styled.Text`
+const QuizScoreTitle = styled.Text`
   font-size: 24px;
   font-family: Open Sans;
   font-weight: bold;
   text-align: center;
+  margin-bottom: 15px;
 `;
 
-const QuestionContainer = styled.View``;
-
-const QuestionText = styled.Text`
-  font-size: 18px;
-  font-family: Open Sans 
-  text-align: center;
-  margin: 30px;
+const QuestionContainer = styled.ScrollView`
+  margin: 30px 0;
 `;
 
 const BeginButton = styled.TouchableOpacity`
-  width: 200px;
+  width: 250px;
   height: 50px;
+  background-color: ${colors.lightNavy};
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
 `;
 
 const BeginButtonText = styled.Text`
+  color: ${colors.white}
   font-size: 18px;
   font-family: Open Sans 
   text-align: center;

@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import colors from '../../config/colors';
 
 const QuizScreen = () => {
   return (
@@ -12,12 +15,14 @@ const QuizScreen = () => {
 
         <QuestionText>1 of 10</QuestionText>
 
-        <AnswerButton>
-          <AnswerButtonText>True</AnswerButtonText>
-        </AnswerButton>
-        <AnswerButton>
-          <AnswerButtonText>False</AnswerButtonText>
-        </AnswerButton>
+        <AnswerButtonContainer>
+          <AnswerButton trueButton>
+            <Icon name="check" size={28} style={{ color: colors.white }} />
+          </AnswerButton>
+          <AnswerButton>
+            <Icon name="close" size={28} style={{ color: colors.white }} />
+          </AnswerButton>
+        </AnswerButtonContainer>
       </QuizContainer>
     </QuizSafeArea>
   );
@@ -25,13 +30,13 @@ const QuizScreen = () => {
 
 const QuizSafeArea = styled.SafeAreaView`
   flex: 1;
+  background-color: ${colors.iceWhite};
 `;
 
 const QuizContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
 `;
 
 const CategoryTitle = styled.Text`
@@ -42,7 +47,8 @@ const CategoryTitle = styled.Text`
 `;
 
 const QuestionContainer = styled.View`
-  border: 1px solid #000;
+  background-color: #ececee;
+  border-radius: 3px;
   height: 250px;
   width: 250px;
   padding: 30px;
@@ -51,16 +57,23 @@ const QuestionContainer = styled.View`
 `;
 
 const QuestionText = styled.Text`
+  color: ${colors.black}
   font-size: 18px;
   font-family: Open Sans 
   text-align: center;
   margin: 30px;
 `;
 
-const AnswerButton = styled.TouchableOpacity`
+const AnswerButtonContainer = styled.SafeAreaView`
+  flex-direction: row;
   width: 250px;
-  height: 50px;
-  background-color: #8ea3ff;
+  justify-content: space-between;
+`;
+
+const AnswerButton = styled.TouchableOpacity`
+  width: 100px;
+  height: 100px;
+  background-color: ${props => (props.trueButton ? colors.darkGreen : colors.red)};
   justify-content: center;
   align-items: center;
   margin: 10px;
@@ -68,8 +81,8 @@ const AnswerButton = styled.TouchableOpacity`
 `;
 
 const AnswerButtonText = styled.Text`
-  color: #fff;
-  font-size: 18px;
+  color: ${colors.white};
+  font-size: 24px;
   font-family: Open Sans;
   text-align: center;
   text-transform: uppercase;
