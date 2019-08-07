@@ -9,8 +9,9 @@ import Button from '../../components/Button';
 import colors from '../../config/colors';
 
 const ResultScreen = ({ navigation }) => {
-  const questions = useSelector(state => state.gameReducer.game);
-  const progressPercent = (2 / 10) * 100;
+  const questions = useSelector(state => state.gameReducer.questions);
+  const totalScore = useSelector(state => state.gameReducer.totalScore);
+  const progressPercent = (totalScore / questions.length) * 100;
   const isProgressCompleted = progressPercent === 100 ? colors.darkGreen : colors.lightNavy;
 
   return (
@@ -18,7 +19,8 @@ const ResultScreen = ({ navigation }) => {
       <QuizContainer>
         <>
           <QuizScoreTitle>
-            YOU SCORED{'\n'}1/{questions.length}
+            YOU SCORED{'\n'}
+            {totalScore}/{questions.length}
           </QuizScoreTitle>
 
           <ProgressBarAnimated

@@ -1,18 +1,25 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { nextQuestion } from '../../actions/game-action';
 import Question from '../../components/Question';
 import colors from '../../config/colors';
 
 const QuizScreen = ({ navigation }) => {
-  const questions = useSelector(state => state.gameReducer.game);
+  const dispatch = useDispatch();
+
+  const questions = useSelector(state => state.gameReducer.questions);
+  const currentQuestion = useSelector(state => state.gameReducer.currentQuestion);
+  const currentQuestionIndex = useSelector(state => state.gameReducer.currentQuestionIndex);
+  const totalScore = useSelector(state => state.gameReducer.totalScore);
   const isGameLoading = useSelector(state => state.gameReducer.isGameLoading);
 
   const onAnswerQuestion = () => {
-    navigation.navigate('Result');
+    dispatch(nextQuestion(questions, 'True', currentQuestionIndex, totalScore));
+    // navigation.navigate('Result');
   };
 
   if (isGameLoading) {
@@ -27,11 +34,11 @@ const QuizScreen = ({ navigation }) => {
 
   return (
     <QuizSafeArea>
-      <CategoryTitle>Entertainment: Video Games</CategoryTitle>
+      <CategoryTitle>{questions[0].category}</CategoryTitle>
       <QuizContainer>
         <Question
-          question={questions[0].question}
-          actualQuestion={2}
+          question={currentQuestion}
+          actualQuestion={currentQuestionIndex + 1}
           questionsQuantity={questions.length}
         />
 
