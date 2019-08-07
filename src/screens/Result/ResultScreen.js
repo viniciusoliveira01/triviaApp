@@ -11,9 +11,11 @@ import colors from '../../config/colors';
 const ResultScreen = ({ navigation }) => {
   const questions = useSelector(state => state.gameReducer.questions);
   const totalScore = useSelector(state => state.gameReducer.totalScore);
+  const userAnswers = useSelector(state => state.gameReducer.userAnswers);
   const progressPercent = (totalScore / questions.length) * 100;
   const isProgressCompleted = progressPercent === 100 ? colors.darkGreen : colors.lightNavy;
 
+  console.log(userAnswers);
   return (
     <QuizSafeArea>
       <QuizContainer>
@@ -31,7 +33,7 @@ const ResultScreen = ({ navigation }) => {
         </>
 
         <QuestionContainer persistentScrollbar>
-          <FlatList data={questions} renderItem={({ item }) => <AnswerResult result={item} />} />
+          <FlatList data={userAnswers} renderItem={({ item }) => <AnswerResult result={item} />} />
         </QuestionContainer>
 
         <Button text="play again" onPress={() => navigation.navigate('Home')} />

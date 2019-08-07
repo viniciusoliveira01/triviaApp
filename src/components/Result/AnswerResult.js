@@ -4,12 +4,12 @@ import { AllHtmlEntities } from 'html-entities';
 
 import colors from '../../config/colors';
 
-const AnswerResult = ({ result: { question, correct_answer } }) => {
+const AnswerResult = ({ result: { question, correct_answer, userAnswer } }) => {
   const entities = new AllHtmlEntities();
   return (
     <AnswerContainer>
-      <AnswerText questionAnswer={correct_answer}>
-        {correct_answer === 'True' ? 'True' : 'False'}{' '}
+      <AnswerText questionAnswer={correct_answer} userAnswer={userAnswer}>
+        {correct_answer === userAnswer ? 'True' : 'False'}{' '}
       </AnswerText>
 
       <QuestionText questionAnswer={correct_answer}>{entities.decode(question)}</QuestionText>
@@ -26,7 +26,7 @@ const AnswerContainer = styled.View`
 `;
 
 const AnswerText = styled.Text`
-  color: ${props => (props.questionAnswer === 'True' ? colors.green : colors.red)};
+  color: ${props => (props.questionAnswer === props.userAnswer ? colors.green : colors.red)};
   font-size: 15px;
   font-weight: 500;
   text-align: left;
@@ -35,7 +35,6 @@ const AnswerText = styled.Text`
 const QuestionText = styled.Text`
   color: ${colors.darkGrey};
   font-size: 14px;
-
   font-weight: 500;
   text-align: left;
 `;

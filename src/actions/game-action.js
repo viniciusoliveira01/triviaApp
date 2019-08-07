@@ -33,12 +33,22 @@ export function fetchGame() {
 
 export function nextQuestion(questions, currentAnswer, currentQuestionIndex, totalScore) {
   return async dispatch => {
-    let newTotalScore = totalScore;
     const nextQuestionIndex = currentQuestionIndex + 1;
+    const nextQuestionObject = questions[nextQuestionIndex];
+    const currentQuestionObject = questions[currentQuestionIndex];
 
-    if (currentAnswer === questions[currentQuestionIndex].correct_answer) {
+    let newTotalScore = totalScore;
+    let userAnswer = {};
+
+    if (currentAnswer === currentQuestionObject.correct_answer) {
       newTotalScore += 1;
     }
+
+    userAnswer = {
+      question: currentQuestionObject.question,
+      correct_answer: currentQuestionObject.correct_answer,
+      userAnswer: currentAnswer
+    };
 
     if (nextQuestionIndex < questions.length) {
       dispatch({
@@ -46,7 +56,8 @@ export function nextQuestion(questions, currentAnswer, currentQuestionIndex, tot
         payload: {
           currentQuestionIndex: nextQuestionIndex,
           totalScore: newTotalScore,
-          currentQuestion: questions[nextQuestionIndex].question
+          currentQuestion: nextQuestionObject.question,
+          userAnswer
         }
       });
     } else {
@@ -54,7 +65,8 @@ export function nextQuestion(questions, currentAnswer, currentQuestionIndex, tot
         type: NEXT_QUESTION,
         payload: {
           currentQuestionIndex,
-          totalScore: newTotalScore
+          totalScore: newTotalScore,
+          userAnswer
         }
       });
 

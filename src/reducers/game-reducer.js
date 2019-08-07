@@ -6,6 +6,7 @@ const gameState = {
   totalScore: 0,
   currentQuestionIndex: 0,
   currentQuestion: '',
+  userAnswers: [],
   error: null
 };
 
@@ -35,10 +36,13 @@ const gameReducer = (state = gameState, action) => {
       return newState;
     }
     case NEXT_QUESTION: {
+      const newUserAnswers = [...state.userAnswers, action.payload.userAnswer];
+
       Object.assign(newState, state, {
         currentQuestionIndex: action.payload.currentQuestionIndex,
         totalScore: action.payload.totalScore,
-        currentQuestion: action.payload.currentQuestion
+        currentQuestion: action.payload.currentQuestion,
+        userAnswers: newUserAnswers
       });
       return newState;
     }
