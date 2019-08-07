@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { FETCH_GAME, FETCH_GAME_SUCCESS, FETCH_GAME_ERROR } from './types';
+import { FETCH_GAME, FETCH_GAME_SUCCESS, FETCH_GAME_ERROR, NEXT_QUESTION } from './types';
+import NavigationService from '../config/navigationService';
 
 export function fetchGame() {
   return async dispatch => {
@@ -13,11 +14,12 @@ export function fetchGame() {
         'Content-Type': 'application/json'
       })
       .then(res => {
-        const game = res.data;
+        const questions = res.data.results;
+        const currentQuestion = questions[0].question;
 
         dispatch({
           type: FETCH_GAME_SUCCESS,
-          payload: game
+          payload: { questions, currentQuestion }
         });
       })
       .catch(e => {
@@ -26,5 +28,49 @@ export function fetchGame() {
           payload: e
         });
       });
+  };
+}
+
+export function nextQuestion(questions, currentAnswer, currentQuestionIndex, totalScore) {
+  return async dispatch => {
+    const nextQuestionIndex = currentQuestionIndex + 1;
+    const nextQuestionObject = questions[nextQuestionIndex];
+    const currentQuestionObject = questions[currentQuestionIndex];
+
+    let newTotalScore = totalScore;
+    let userAnswer = {};
+
+    if (currentAnswer === currentQuestionObject.correct_answer) {
+      newTotalScore += 1;
+    }
+
+    userAnswer = {
+      question: currentQuestionObject.question,
+      correct_answer: currentQuestionObject.correct_answer,
+      userAnswer: currentAnswer
+    };
+
+    if (nextQuestionIndex < questions.length) {
+      dispatch({
+        type: NEXT_QUESTION,
+        payload: {
+          currentQuestionIndex: nextQuestionIndex,
+          totalScore: newTotalScore,
+          currentQuestion: nextQuestionObject.question,
+          userAnswer
+        }
+      });
+    } else {
+      dispatch({
+        type: NEXT_QUESTION,
+        payload: {
+          currentQuestionIndex,
+          totalScore: newTotalScore,
+          userAnswer
+        }
+      });
+
+      NavigationService.navigate('Result');
+    }
   };
 }

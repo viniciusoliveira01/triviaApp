@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
+import Button from '../../components/Commons/Button';
 import { fetchGame } from '../../actions/game-action';
 import colors from '../../config/colors';
 
@@ -21,9 +22,7 @@ const HomeScreen = ({ navigation }) => {
           You will be presented {'\n'}with 10 true or false{'\n'} questions.
         </WelcomeText>
         <WelcomeText>Can you score 100%?</WelcomeText>
-        <BeginButton onPress={startGame}>
-          <BeginButtonText>begin</BeginButtonText>
-        </BeginButton>
+        <Button text="begin" onPress={startGame} />
       </HomeContainer>
     </WelcomeSafeArea>
   );
@@ -43,7 +42,6 @@ const HomeContainer = styled.View`
 
 const WelcomeTitle = styled.Text`
   font-size: 20px;
-  font-family: Open Sans;
   font-weight: bold;
   text-align: center;
 `;
@@ -51,27 +49,8 @@ const WelcomeTitle = styled.Text`
 const WelcomeText = styled.Text`
   color: ${colors.darkGrey};
   font-size: 22px;
-  font-family: Open Sans 
   text-align: center;
   margin: 10px;
-`;
-
-const BeginButton = styled.TouchableOpacity`
-  width: 250px;
-  height: 50px;
-  background-color: ${colors.lightNavy};
-  border-radius: 3px;
-  justify-content: center;
-  align-items: center;
-`;
-
-const BeginButtonText = styled.Text`
-  color: ${colors.white}
-  font-size: 20px;
-  font-family: Open Sans;
-  font-weight: 500;
-  text-align: center;
-  text-transform: uppercase;
 `;
 
 export default HomeScreen;
