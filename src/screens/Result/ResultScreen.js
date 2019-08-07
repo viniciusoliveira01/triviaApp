@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 
-import AnswerResult from '../../components/AnswerResult';
-import Button from '../../components/Button';
+import AnswerResult from '../../components/Result/AnswerResult';
+import Button from '../../components/Commons/Button';
 import colors from '../../config/colors';
 
 const ResultScreen = ({ navigation }) => {
@@ -54,7 +54,6 @@ const QuizContainer = styled.View`
 
 const QuizScoreTitle = styled.Text`
   font-size: 24px;
-  font-family: Open Sans;
   font-weight: bold;
   text-align: center;
   margin-bottom: 15px;

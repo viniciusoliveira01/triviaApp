@@ -53,6 +53,7 @@ export function nextQuestion(questions, currentAnswer, currentQuestionIndex, tot
       dispatch({
         type: NEXT_QUESTION,
         payload: {
+          currentQuestionIndex,
           totalScore: newTotalScore
         }
       });

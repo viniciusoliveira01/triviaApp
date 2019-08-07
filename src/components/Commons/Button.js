@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import colors from '../config/colors';
+import colors from '../../config/colors';
 
 const Button = ({ text, onPress }) => {
   return (
@@ -23,7 +23,6 @@ const BeginButton = styled.TouchableOpacity`
 const BeginButtonText = styled.Text`
   color: ${colors.white}
   font-size: 20px;
-  font-family: Open Sans;
   font-weight: 500;
   text-align: center;
   text-transform: uppercase;

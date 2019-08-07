@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import Button from '../../components/Button';
+import Button from '../../components/Commons/Button';
 import { fetchGame } from '../../actions/game-action';
 import colors from '../../config/colors';
 
@@ -42,7 +42,6 @@ const HomeContainer = styled.View`
 
 const WelcomeTitle = styled.Text`
   font-size: 20px;
-  font-family: Open Sans;
   font-weight: bold;
   text-align: center;
 `;
@@ -50,7 +49,6 @@ const WelcomeTitle = styled.Text`
 const WelcomeText = styled.Text`
   color: ${colors.darkGrey};
   font-size: 22px;
-  font-family: Open Sans 
   text-align: center;
   margin: 10px;
 `;

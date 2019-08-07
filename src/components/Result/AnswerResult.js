@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { AllHtmlEntities } from 'html-entities';
 
-import colors from '../config/colors';
+import colors from '../../config/colors';
 
 const AnswerResult = ({ result: { question, correct_answer } }) => {
   const entities = new AllHtmlEntities();
@@ -28,7 +28,6 @@ const AnswerContainer = styled.View`
 const AnswerText = styled.Text`
   color: ${props => (props.questionAnswer === 'True' ? colors.green : colors.red)};
   font-size: 15px;
-  font-family: Open Sans;
   font-weight: 500;
   text-align: left;
 `;
@@ -36,7 +35,7 @@ const AnswerText = styled.Text`
 const QuestionText = styled.Text`
   color: ${colors.darkGrey};
   font-size: 14px;
-  font-family: Open Sans;
+
   font-weight: 500;
   text-align: left;
 `;

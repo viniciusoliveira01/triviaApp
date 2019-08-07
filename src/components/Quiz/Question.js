@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { AllHtmlEntities } from 'html-entities';
 
-import colors from '../config/colors';
+import colors from '../../config/colors';
 
 const Button = ({ question, questionsQuantity, actualQuestion }) => {
   const entities = new AllHtmlEntities();
@@ -32,7 +32,6 @@ const QuestionContainer = styled.View`
 const QuestionText = styled.Text`
   color: ${colors.black}
   font-size: 18px;
-  font-family: Open Sans 
   text-align: center;
   margin: 30px;
 `;
