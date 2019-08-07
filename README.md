@@ -30,6 +30,7 @@ react-native run-ios
 - [x] Redux hooks
 - [x] React Navigation
 - [x] Git Flow
+- [x] Eslint
 - [x] Axios
 - [x] Styled Components
 
