@@ -44,7 +44,9 @@
     "moduleNameMapper": {
       "styled-components": "<rootDir>/node_modules/styled-components/native/dist/styled-components.native.cjs.js"
     },
-    "setupTestFrameworkScriptFile": "./__tests__/__mocks__/axios.js"
+    "setupFilesAfterEnv": [
+      "./__mock__/axios.js"
+    ]
   },
   "rnpm": {
     "assets": [

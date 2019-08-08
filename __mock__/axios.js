@@ -1,25 +1,5 @@
+import questions from './questions';
+
 export default {
-  get: jest.fn(() =>
-    Promise.resolve({
-      results: [
-        {
-          category: 'Entertainment: Video Games',
-          type: 'boolean',
-          difficulty: 'hard',
-          question:
-            'In &quot;The Sims&quot; series, the most members in a household you can have is 8.',
-          correct_answer: 'True',
-          incorrect_answers: ['False']
-        },
-        {
-          category: 'History',
-          type: 'boolean',
-          difficulty: 'hard',
-          question: 'Joseph Stalin&#039;s real name was Ioseb Bessarionis dze Dzugashvili.',
-          correct_answer: 'True',
-          incorrect_answers: ['False']
-        }
-      ]
-    })
-  )
+  get: jest.fn(() => Promise.resolve(questions))
 };
