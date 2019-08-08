@@ -36,17 +36,18 @@ export function nextQuestion(questions, currentAnswer, currentQuestionIndex, tot
     const nextQuestionIndex = currentQuestionIndex + 1;
     const nextQuestionObject = questions[nextQuestionIndex];
     const currentQuestionObject = questions[currentQuestionIndex];
+    const { correct_answer } = currentQuestionObject;
 
     let newTotalScore = totalScore;
     let userAnswer = {};
 
-    if (currentAnswer === currentQuestionObject.correct_answer) {
+    if (currentAnswer === correct_answer) {
       newTotalScore += 1;
     }
 
     userAnswer = {
       question: currentQuestionObject.question,
-      correct_answer: currentQuestionObject.correct_answer,
+      correct_answer,
       userAnswer: currentAnswer
     };
 
