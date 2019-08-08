@@ -1,27 +1,37 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { nextQuestion } from '../../actions/game-action';
+import Question from '../../components/Quiz/Question';
+import AnswerButton from '../../components/Quiz/AnswerButton';
 import colors from '../../config/colors';
 
 const QuizScreen = () => {
+  const dispatch = useDispatch();
+
+  const questions = useSelector(state => state.gameReducer.questions);
+  const currentQuestion = useSelector(state => state.gameReducer.currentQuestion);
+  const currentCategory = useSelector(state => state.gameReducer.currentCategory);
+  const currentQuestionIndex = useSelector(state => state.gameReducer.currentQuestionIndex);
+  const totalScore = useSelector(state => state.gameReducer.totalScore);
+
+  const onAnswerQuestion = answer =>
+    dispatch(nextQuestion(questions, answer, currentQuestionIndex, totalScore));
+
   return (
     <QuizSafeArea>
-      <CategoryTitle>Entertainment: Video Games</CategoryTitle>
+      <CategoryTitle>{currentCategory}</CategoryTitle>
       <QuizContainer>
-        <QuestionContainer>
-          <QuestionText>Unterned originally started as a Roblox Game.</QuestionText>
-        </QuestionContainer>
-
-        <QuestionText>1 of 10</QuestionText>
+        <Question
+          question={currentQuestion}
+          actualQuestion={currentQuestionIndex + 1}
+          questionsQuantity={questions.length}
+        />
 
         <AnswerButtonContainer>
-          <AnswerButton trueButton>
-            <Icon name="check" size={28} style={{ color: colors.white }} />
-          </AnswerButton>
-          <AnswerButton>
-            <Icon name="close" size={28} style={{ color: colors.white }} />
-          </AnswerButton>
+          <AnswerButton iconText="check" trueButton onPress={() => onAnswerQuestion('True')} />
+          <AnswerButton iconText="close" onPress={() => onAnswerQuestion('False')} />
         </AnswerButtonContainer>
       </QuizContainer>
     </QuizSafeArea>
@@ -37,55 +47,19 @@ const QuizContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+  margin: 30px 0;
 `;
 
 const CategoryTitle = styled.Text`
   font-size: 24px;
-  font-family: Open Sans;
   font-weight: bold;
   text-align: center;
-`;
-
-const QuestionContainer = styled.View`
-  background-color: #ececee;
-  border-radius: 3px;
-  height: 250px;
-  width: 250px;
-  padding: 30px;
-  align-items: center;
-  justify-content: center;
-`;
-
-const QuestionText = styled.Text`
-  color: ${colors.black}
-  font-size: 18px;
-  font-family: Open Sans 
-  text-align: center;
-  margin: 30px;
 `;
 
 const AnswerButtonContainer = styled.SafeAreaView`
   flex-direction: row;
   width: 250px;
   justify-content: space-between;
-`;
-
-const AnswerButton = styled.TouchableOpacity`
-  width: 100px;
-  height: 100px;
-  background-color: ${props => (props.trueButton ? colors.darkGreen : colors.red)};
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  border-radius: 3px;
-`;
-
-const AnswerButtonText = styled.Text`
-  color: ${colors.white};
-  font-size: 24px;
-  font-family: Open Sans;
-  text-align: center;
-  text-transform: uppercase;
 `;
 
 export default QuizScreen;

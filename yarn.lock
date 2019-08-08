@@ -2730,6 +2730,13 @@ flatted@^2.0.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
   integrity sha512-a1hQMktqW9Nmqr5aktAux3JMNqaucxGcjtjWnZLHX7yyPCmlSV3M54nGYbqT8K+0GhF3NBgmJCc3ma+WOgX8Jg==
 
+flux-standard-action@^2.0.3:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/flux-standard-action/-/flux-standard-action-2.1.0.tgz#23713a545ee49d62bd067e77d63f8c691561c94c"
+  integrity sha512-9Gd5RIfxyvS33xfxRf/ePOBKcPe4BlMu6qg6aS+kieTcVLgn19O6t/n7TY2deT5L0uhUSFpJg2fq5BpUsShpfw==
+  dependencies:
+    lodash "^4.17.11"
+
 follow-redirects@1.5.10:
   version "1.5.10"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
@@ -3056,6 +3063,11 @@ html-encoding-sniffer@^1.0.2:
   integrity sha512-71lZziiDnsuabfdYiUeWdCVyKuqwWi23L8YeIgV9jSSZHCtb6wB1BKWooH7L3tn4/FuZJMVWyNaIDr4RGmaSYw==
   dependencies:
     whatwg-encoding "^1.0.1"
+
+html-entities@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
+  integrity sha1-DfKTUfByEWNRXfueVUPl9u7VFi8=
 
 http-errors@~1.7.2:
   version "1.7.3"
@@ -4138,6 +4150,11 @@ locate-path@^3.0.0:
   dependencies:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
+
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  integrity sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
 
 lodash.pad@^4.1.0:
   version "4.5.1"
@@ -5365,7 +5382,7 @@ pretty-format@24.0.0-alpha.6:
     ansi-regex "^4.0.0"
     ansi-styles "^3.2.0"
 
-pretty-format@^24.8.0:
+pretty-format@^24.0.0, pretty-format@^24.8.0:
   version "24.8.0"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-24.8.0.tgz#8dae7044f58db7cb8be245383b565a963e3c27f2"
   integrity sha512-P952T7dkrDEplsR+TuY7q3VXDae5Sr7zmQb12JU/NDQa/3CH7/QW0yvqLcGN6jL+zQFKaoJcPc+yJxMTGmosqw==
@@ -5549,6 +5566,13 @@ react-native-tab-view@^1.0.0, react-native-tab-view@^1.2.0:
   integrity sha512-Bke8KkDcDhvB/z0AS7MnQKMD2p6Kwfc1rSKlMOvg9CC5CnClQ2QEnhPSbwegKDYhUkBI92iH/BYy7hNSm5kbUQ==
   dependencies:
     prop-types "^15.6.1"
+
+react-native-testing-library@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/react-native-testing-library/-/react-native-testing-library-1.11.1.tgz#0e2d73991110cf7d7800d86610ad7b7f8a4c9455"
+  integrity sha512-PTwDn1sgegvFqqF1v9zrRUChHqFqp5rWVUjXgkk134wssVhfc2oAuS6kiOvr3w7tLmFzuspxvT5sw0gMrRnDfQ==
+  dependencies:
+    pretty-format "^24.0.0"
 
 react-native-vector-icons@^6.6.0:
   version "6.6.0"
@@ -5754,6 +5778,26 @@ realpath-native@^1.1.0:
   integrity sha512-wlgPA6cCIIg9gKz0fgAPjnzh4yR/LnXovwuo9hvyGvx3h8nX4+/iLZplfUWasXpqD8BdnGnP5njOFjkUwPzvjA==
   dependencies:
     util.promisify "^1.0.0"
+
+redux-mock-store@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.5.3.tgz#1f10528949b7ce8056c2532624f7cafa98576c6d"
+  integrity sha512-ryhkkb/4D4CUGpAV2ln1GOY/uh51aczjcRz9k2L2bPx/Xja3c5pSGJJPyR25GNVRXtKIExScdAgFdiXp68GmJA==
+  dependencies:
+    lodash.isplainobject "^4.0.6"
+
+redux-promise@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/redux-promise/-/redux-promise-0.6.0.tgz#c64723b5213bb5603c11b74302883b682e06b319"
+  integrity sha512-R2mGxJbPFgXyCNbFDE6LjTZhCEuACF54g1bxld3nqBhnRMX0OsUyWk77moF7UMGkUdl5WOAwc4BC5jOd1dunqQ==
+  dependencies:
+    flux-standard-action "^2.0.3"
+    is-promise "^2.1.0"
+
+redux-thunk@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+  integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
 redux@4.0.4:
   version "4.0.4"
