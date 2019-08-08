@@ -12,7 +12,7 @@ yarn
 
 ```
 yarn install
-react-native run-ios
+react-native run-ios or react-native run-android
 ```
 
 or
@@ -21,7 +21,7 @@ npm
 
 ```
 npm install
-react-native run-ios
+react-native run-ios or react-native run-android
 ```
 
 ### Technologies
