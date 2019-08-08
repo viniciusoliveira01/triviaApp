@@ -39,3 +39,5 @@ react-native run-ios
 - [] Unit tests
 - [] end-to-end tests
 - [] TypeScript
+- [] New features
+- [] Animations
