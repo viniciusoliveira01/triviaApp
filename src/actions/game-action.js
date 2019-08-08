@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_GAME, FETCH_GAME_SUCCESS, FETCH_GAME_ERROR, NEXT_QUESTION } from './types';
+import { FETCH_GAME, FETCH_GAME_SUCCESS, FETCH_GAME_ERROR, NEXT_QUESTION, END_GAME } from './types';
 import NavigationService from '../config/navigationService';
 
 export function fetchGame() {
@@ -15,12 +15,18 @@ export function fetchGame() {
       })
       .then(res => {
         const questions = res.data.results;
-        const currentQuestion = questions[0].question;
+        const { question, category } = questions[0];
 
         dispatch({
           type: FETCH_GAME_SUCCESS,
-          payload: { questions, currentQuestion }
+          payload: {
+            questions,
+            currentQuestion: question,
+            currentCategory: category
+          }
         });
+
+        NavigationService.navigate('Quiz');
       })
       .catch(e => {
         dispatch({
@@ -58,6 +64,7 @@ export function nextQuestion(questions, currentAnswer, currentQuestionIndex, tot
           currentQuestionIndex: nextQuestionIndex,
           totalScore: newTotalScore,
           currentQuestion: nextQuestionObject.question,
+          currentCategory: nextQuestionObject.category,
           userAnswer
         }
       });
@@ -73,5 +80,15 @@ export function nextQuestion(questions, currentAnswer, currentQuestionIndex, tot
 
       NavigationService.navigate('Result');
     }
+  };
+}
+
+export function endGame() {
+  return async dispatch => {
+    dispatch({
+      type: END_GAME
+    });
+
+    NavigationService.navigate('Home');
   };
 }

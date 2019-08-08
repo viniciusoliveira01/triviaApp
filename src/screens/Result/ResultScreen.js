@@ -1,21 +1,26 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 
 import AnswerResult from '../../components/Result/AnswerResult';
 import Button from '../../components/Commons/Button';
+import { endGame } from '../../actions/game-action';
 import colors from '../../config/colors';
 
-const ResultScreen = ({ navigation }) => {
+const ResultScreen = () => {
+  const dispatch = useDispatch();
   const questions = useSelector(state => state.gameReducer.questions);
   const totalScore = useSelector(state => state.gameReducer.totalScore);
   const userAnswers = useSelector(state => state.gameReducer.userAnswers);
   const progressPercent = (totalScore / questions.length) * 100;
   const isProgressCompleted = progressPercent === 100 ? colors.darkGreen : colors.lightNavy;
 
-  console.log(userAnswers);
+  const finishGame = () => {
+    dispatch(endGame());
+  };
+
   return (
     <QuizSafeArea>
       <QuizContainer>
@@ -36,7 +41,7 @@ const ResultScreen = ({ navigation }) => {
           <FlatList data={userAnswers} renderItem={({ item }) => <AnswerResult result={item} />} />
         </QuestionContainer>
 
-        <Button text="play again" onPress={() => navigation.navigate('Home')} />
+        <Button text="play again" onPress={finishGame} />
       </QuizContainer>
     </QuizSafeArea>
   );

@@ -12,7 +12,7 @@ describe('Test the game', () => {
   it('expect that the request should be successful', () => {
     const store = mockStore({});
 
-    const expectedActions = ['FETCH_GAME', 'FETCH_GAME_SUCCESS'];
+    const expectedActions = ['FETCH_GAME', 'FETCH_GAME_SUCCESS', 'FETCH_GAME_ERROR'];
 
     mockAxios.get('*', { response: 200 });
     return store.dispatch(fetchGame()).then(() => {

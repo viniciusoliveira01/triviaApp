@@ -1,17 +1,17 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import Button from '../../components/Commons/Button';
 import { fetchGame } from '../../actions/game-action';
 import colors from '../../config/colors';
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
   const dispatch = useDispatch();
+  const isGameLoading = useSelector(state => state.gameReducer.isGameLoading);
 
   const startGame = () => {
     dispatch(fetchGame());
-    navigation.navigate('Quiz');
   };
 
   return (
@@ -22,7 +22,7 @@ const HomeScreen = ({ navigation }) => {
           You will be presented {'\n'}with 10 true or false{'\n'} questions.
         </WelcomeText>
         <WelcomeText>Can you score 100%?</WelcomeText>
-        <Button text="begin" onPress={startGame} />
+        <Button text="begin" onPress={startGame} isLoading={isGameLoading} />
       </HomeContainer>
     </WelcomeSafeArea>
   );

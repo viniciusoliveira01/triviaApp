@@ -1,5 +1,4 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
@@ -13,26 +12,16 @@ const QuizScreen = () => {
 
   const questions = useSelector(state => state.gameReducer.questions);
   const currentQuestion = useSelector(state => state.gameReducer.currentQuestion);
+  const currentCategory = useSelector(state => state.gameReducer.currentCategory);
   const currentQuestionIndex = useSelector(state => state.gameReducer.currentQuestionIndex);
   const totalScore = useSelector(state => state.gameReducer.totalScore);
-  const isGameLoading = useSelector(state => state.gameReducer.isGameLoading);
 
   const onAnswerQuestion = answer =>
     dispatch(nextQuestion(questions, answer, currentQuestionIndex, totalScore));
 
-  if (isGameLoading) {
-    return (
-      <ActivityIndicator
-        size="large"
-        color={colors.lightNavy}
-        style={{ flex: 1, alignSelf: 'center' }}
-      />
-    );
-  }
-
   return (
     <QuizSafeArea>
-      <CategoryTitle>{questions[0].category}</CategoryTitle>
+      <CategoryTitle>{currentCategory}</CategoryTitle>
       <QuizContainer>
         <Question
           question={currentQuestion}

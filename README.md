@@ -33,10 +33,10 @@ react-native run-ios
 - [x] Eslint
 - [x] Axios
 - [x] Styled Components
+- [x] Unit tests
 
 ### Soon!
 
-- [] Unit tests
 - [] end-to-end tests
 - [] TypeScript
 - [] New features

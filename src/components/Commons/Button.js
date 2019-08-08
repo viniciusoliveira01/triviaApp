@@ -1,12 +1,19 @@
 import React from 'react';
+import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components';
 
 import colors from '../../config/colors';
 
-const Button = ({ text, onPress }) => {
+const Button = ({ text, onPress, isLoading }) => {
   return (
     <BeginButton onPress={onPress}>
-      <BeginButtonText>{text}</BeginButtonText>
+      {isLoading ? (
+        <ActivityIndicator size="small" color={colors.white} />
+      ) : (
+        <>
+          <BeginButtonText>{text}</BeginButtonText>
+        </>
+      )}
     </BeginButton>
   );
 };

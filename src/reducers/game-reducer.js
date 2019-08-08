@@ -1,4 +1,10 @@
-import { FETCH_GAME, FETCH_GAME_SUCCESS, FETCH_GAME_ERROR, NEXT_QUESTION } from '../actions/types';
+import {
+  FETCH_GAME,
+  FETCH_GAME_SUCCESS,
+  FETCH_GAME_ERROR,
+  NEXT_QUESTION,
+  END_GAME
+} from '../actions/types';
 
 const gameState = {
   isGameLoading: false,
@@ -6,6 +12,7 @@ const gameState = {
   totalScore: 0,
   currentQuestionIndex: 0,
   currentQuestion: '',
+  currentCategory: '',
   userAnswers: [],
   error: null
 };
@@ -24,7 +31,8 @@ const gameReducer = (state = gameState, action) => {
       Object.assign(newState, state, {
         isGameLoading: false,
         questions: action.payload.questions,
-        currentQuestion: action.payload.currentQuestion
+        currentQuestion: action.payload.currentQuestion,
+        currentCategory: action.payload.currentCategory
       });
       return newState;
     }
@@ -42,7 +50,19 @@ const gameReducer = (state = gameState, action) => {
         currentQuestionIndex: action.payload.currentQuestionIndex,
         totalScore: action.payload.totalScore,
         currentQuestion: action.payload.currentQuestion,
+        currentCategory: action.payload.currentCategory,
         userAnswers: newUserAnswers
+      });
+      return newState;
+    }
+    case END_GAME: {
+      Object.assign(newState, state, {
+        questions: [],
+        totalScore: 0,
+        currentQuestionIndex: 0,
+        currentQuestion: '',
+        currentCategory: '',
+        userAnswers: []
       });
       return newState;
     }

@@ -9,7 +9,7 @@ const AnswerResult = ({ result: { question, correct_answer, userAnswer } }) => {
   return (
     <AnswerContainer>
       <AnswerText questionAnswer={correct_answer} userAnswer={userAnswer}>
-        {correct_answer === userAnswer ? 'True' : 'False'}{' '}
+        {correct_answer}
       </AnswerText>
 
       <QuestionText questionAnswer={correct_answer}>{entities.decode(question)}</QuestionText>
