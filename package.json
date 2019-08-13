@@ -7,7 +7,6 @@
     "test": "jest --watch"
   },
   "dependencies": {
-    "-promise": "^0.6.0",
     "axios": "^0.19.0",
     "html-entities": "^1.2.1",
     "react": "16.8.3",
